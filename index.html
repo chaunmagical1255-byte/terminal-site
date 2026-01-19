@@ -1,40 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>Secure Terminal</title>
 <style>
-body {
+html, body {
   margin: 0;
-  background-color: black;
+  width: 100%;
+  height: 100%;
+  background: black;
   color: #00ff00;
   font-family: monospace;
   font-size: 14px;
 }
+
 .terminal {
   padding: 15px;
-  white-space: pre-line;
+  white-space: pre-wrap;
 }
+
 .cursor {
   display: inline-block;
-  width: 10px;
-  background-color: #00ff00;
-  animation: blink 1s infinite;
+  width: 8px;
+  background: #00ff00;
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
 }
+
 @keyframes blink {
   50% { opacity: 0; }
 }
 </style>
 </head>
+
 <body>
-<div class="terminal">
-> Initializing secure session...
-> Loading system modules...
-> Access Level: USER
-> Status: VERIFIED
-> Connection: ESTABLISHED
->
-> Welcome to Secure Terminal
-<span class="cursor"></span>
-</div>
+<div class="terminal" id="terminal"></div>
+
+<script>
+const lines = [
+  "> Initializing secure session...",
+  "> Loading system modules...",
+  "> Access Level: USER",
+  "> Status: VERIFIED",
+  "> Connection: ESTABLISHED",
+  "",
+  "> Welcome to Secure Terminal"
+];
+
+let i = 0;
+let j = 0;
+const speed = 40;
+const terminal = document.getElementById("terminal");
+
+function typeLine() {
+  if (i < lines.length) {
+    if (j < lines[i].length) {
+      terminal.innerHTML += lines[i][j];
+      j++;
+      setTimeout(typeLine, speed);
+    } else {
+      terminal.innerHTML += "\n";
+      i++;
+      j = 0;
+      setTimeout(typeLine, 300);
+    }
+  } else {
+    terminal.innerHTML += '<span class="cursor"></span>';
+  }
+}
+
+typeLine();
+</script>
 </body>
 </html>
-\
