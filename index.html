@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  background-color: black;
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 14px;
+}
+.terminal {
+  padding: 15px;
+  white-space: pre-line;
+}
+.cursor {
+  display: inline-block;
+  width: 10px;
+  background-color: #00ff00;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+</style>
+</head>
+<body>
+<div class="terminal">
+> Initializing secure session...
+> Loading system modules...
+> Access Level: USER
+> Status: VERIFIED
+> Connection: ESTABLISHED
+>
+> Welcome to Secure Terminal
+<span class="cursor"></span>
+</div>
+</body>
+</html>
+\
